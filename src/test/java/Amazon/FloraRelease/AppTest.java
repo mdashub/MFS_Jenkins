@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.Test;
 
 /**
@@ -22,7 +24,7 @@ public class AppTest {
 		driver = new ChromeDriver();
 		driver.navigate().to("https://www.amazon.in");
 		driver.manage().window().maximize();
-		//The comment
+		// The comment
 
 	}
 
@@ -33,6 +35,11 @@ public class AppTest {
 		element.click();
 		Assert.assertEquals(driver.getCurrentUrl().contains("help"), true);
 
+	}
+
+	@AfterClass
+	public void browserClose() {
+		driver.quit();
 	}
 
 }
