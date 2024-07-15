@@ -37,7 +37,6 @@ public class AppTest {
 
 	}
 
-	//close the browser
 	@AfterClass
 	public void browserClose() {
 		driver.quit();
