@@ -28,6 +28,6 @@ public class GoogleTest {
 	@AfterClass
 	public void browserClose() {
 		driver.quit();
-		driver.getCurrentUrl(); //this will lead to failure 
+		//driver.getCurrentUrl(); //this will lead to failure and email was verified.
 	}
 }
