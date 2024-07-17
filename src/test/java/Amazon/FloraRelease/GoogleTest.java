@@ -19,7 +19,7 @@ public class GoogleTest {
 
 	@Test(priority = 0)
 	@Parameters("paraMdas")
-	public void amazonLaunchTest(@Optional String defaultValue_Hai, String localparaMdas) {
+	public void amazonLaunchTest(@Optional String defaultValue_Hai) {
 
 		boolean remote = true;
 		if (remote)
@@ -29,7 +29,7 @@ public class GoogleTest {
 			driver = new ChromeDriver();
 		System.out.println(
 				"***************************************************Passing Params from jenkins********************************************************************************** "
-						+ localparaMdas);
+						+ defaultValue_Hai);
 		driver.navigate().to("https://www.google.in");
 		driver.manage().window().maximize();
 		// The comment
