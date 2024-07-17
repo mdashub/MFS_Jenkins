@@ -32,7 +32,7 @@ public class GoogleTest {
 
 	public void remoteTest() {
 		// URL of the Selenium Grid Hub
-		String hubUrl = "http://localhost:4444/wd/hub";
+		String hubUrl = "http://192.168.31.138:4444/wd/hub"; 
 
 		// Desired capabilities for the browser (Chrome in this case)
 		ChromeOptions options = new ChromeOptions();
