@@ -1,13 +1,17 @@
 pipeline {
     agent any
     
-     stage('Checkout') {
+     
+
+    stages {
+	
+	stage('Checkout') {
             steps {
                 git branch: 'master', url: 'https://github.com/mdashub/MFS_Jenkins.git'
             }
-        }
-
-    stages {
+        
+		}
+		
         stage('Build') {
             steps {
                 echo 'Building..'
