@@ -51,7 +51,7 @@ public class AppTest {
 		By helpLocator = By.xpath("//*[text()='Help']");
 		WebElement element = driver.findElement(helpLocator);
 		element.click();
-		Assert.assertEquals(driver.getCurrentUrl().contains("help"), false);
+		Assert.assertEquals(driver.getCurrentUrl().contains("help"), true);
 
 	}
 
