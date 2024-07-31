@@ -1,9 +1,14 @@
 package Amazon.FloraRelease;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,6 +17,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 /**
@@ -22,16 +28,17 @@ public class AppTest {
 	 * Rigorous Test :-)
 	 */
 
-	WebDriver driver;
+	public WebDriver driver;
+	@BeforeTest
+	public void driverInitilization() {
+		DriverFactory driverfactory = new DriverFactory();
+		driver = driverfactory.initDriver();
+	}
 
-	@Test(priority = 0)
+	
+	@Test(priority = 1)
 	public void amazonLaunchTest() {
-		boolean remote = false;
-		if (remote)
-			remoteTest();
 
-		else
-			driver = new ChromeDriver();
 
 		driver.navigate().to("https://www.amazon.in");
 		driver.manage().window().maximize();
@@ -39,35 +46,24 @@ public class AppTest {
 
 	}
 
-	public void remoteTest() {
-		// URL of the Selenium Grid Hub
-		String hubUrl = "http://192.168.31.138:4444/wd/hub";
-
-		// Desired capabilities for the browser (Chrome in this case)
-		ChromeOptions options = new ChromeOptions();
-		options.setCapability("browserName", "chrome");
-
-		// Create a RemoteWebDriver instance
-		try {
-			driver = new RemoteWebDriver(new URL(hubUrl), options);
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-	@Test(priority = 1)
+	@Test(priority = 2)
 	public void helpURLTest() {
-		By helpLocator = By.xpath("//*[text()='Help']");
+		By helpLocator = By.xpath("//*[text()='Helpss']");
 		WebElement element = driver.findElement(helpLocator);
 		element.click();
-		Assert.assertEquals(driver.getCurrentUrl().contains("help"), true);
+		// Assert.assertEquals(driver.getCurrentUrl().contains("help"), false);
+		Assert.assertTrue(false);
 
 	}
+
+	
+	
 
 	@AfterClass
 	public void browserClose() {
 		driver.quit();
 	}
+
+	
 
 }

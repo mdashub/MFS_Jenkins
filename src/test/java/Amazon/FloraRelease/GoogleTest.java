@@ -1,23 +1,19 @@
 package Amazon.FloraRelease;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.time.Duration;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.InvalidSelectorException;
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
@@ -29,22 +25,25 @@ public class GoogleTest {
 
 	@Test(priority = 0)
 	@Parameters("paraMdas")
-	public void amazonLaunchTest(@Optional String defaultValue_Hai) {
+	public void googleLaunchTest(@Optional String defaultValue_Hai) {
 
 		boolean remote = false;
 		if (remote)
 			remoteTest();
 
-		else
+		else {
 			driver = new ChromeDriver();
+			
+		}
+
 		System.out.println(
 				"***************************************************Passing Params from jenkins********************************************************************************** "
 						+ defaultValue_Hai);
 		driver.navigate().to("https://www.google.in");
 		driver.manage().window().maximize();
-		
-		 JavascriptExecutor js = (JavascriptExecutor) driver;
-		 js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
+
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
 		// The comment
 		/*
 		 * Actions act = new Actions(driver);
@@ -63,8 +62,20 @@ public class GoogleTest {
 		 * wait.pollingEvery(Duration.ofMillis(200)).ignoring(NoSuchElementException.
 		 * class).ignoring(InvalidSelectorException.class);;
 		 */
-		//wait.until(ExpectedConditions.elementSelectionStateToBe(driver.findElement(By.xpath("")), true));
+		// wait.until(ExpectedConditions.elementSelectionStateToBe(driver.findElement(By.xpath("")),
+		// true));
 
+	}
+
+	@Test(priority = 1, enabled = true)
+	public void failureTestForScreenShot() {
+		Assert.assertTrue(false);
+	}
+
+	@AfterClass
+	public void browserClose() {
+		driver.quit();
+		// driver.getCurrentUrl(); //this will lead to failure and email was verified.
 	}
 
 	public void remoteTest() {
@@ -82,11 +93,5 @@ public class GoogleTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-
-	@AfterClass
-	public void browserClose() {
-		driver.quit();
-		// driver.getCurrentUrl(); //this will lead to failure and email was verified.
 	}
 }
