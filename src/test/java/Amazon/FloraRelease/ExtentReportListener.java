@@ -83,6 +83,7 @@ public class ExtentReportListener extends DriverFactory implements ITestListener
 	public synchronized void onTestSuccess(ITestResult result) {
 		System.out.println((result.getMethod().getMethodName() + " passed!-Mdas"));
 		test.get().pass("Test passed");
+		test.get().pass(result.getThrowable(), MediaEntityBuilder.createScreenCaptureFromPath(getScreenshot()).build());
 		test.get().getModel().setEndTime(getTime(result.getEndMillis()));
 	}
 

@@ -48,11 +48,10 @@ public class AppTest {
 
 	@Test(priority = 2)
 	public void helpURLTest() {
-		By helpLocator = By.xpath("//*[text()='Helpss']");
+		By helpLocator = By.xpath("//*[text()='Help']");
 		WebElement element = driver.findElement(helpLocator);
 		element.click();
-		// Assert.assertEquals(driver.getCurrentUrl().contains("help"), false);
-		Assert.assertTrue(false);
+		Assert.assertEquals(driver.getCurrentUrl().contains("help"), false);
 
 	}
 
