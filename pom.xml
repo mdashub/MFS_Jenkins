@@ -83,8 +83,13 @@
 							</suiteXmlFile>
 						</suiteXmlFiles>
 
-						
 
+						<systemPropertyVariables>
+							<parameterMdas>
+								${paraMdas}
+							</parameterMdas>
+
+						</systemPropertyVariables>
 
 					</configuration>
 				</plugin>
