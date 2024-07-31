@@ -36,7 +36,7 @@ public class AppTest {
 	}
 
 	
-	@Test(priority = 1)
+	@Test(priority = 1,description = "This test verifes that Amazon INDIA is launched")
 	public void amazonLaunchTest() {
 
 
@@ -46,7 +46,7 @@ public class AppTest {
 
 	}
 
-	@Test(priority = 2)
+	@Test(priority = 2, description = "To verify Help Url is active on footer note")
 	public void helpURLTest() {
 		By helpLocator = By.xpath("//*[text()='Help']");
 		WebElement element = driver.findElement(helpLocator);
